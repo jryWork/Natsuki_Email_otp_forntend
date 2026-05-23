@@ -1,11 +1,6 @@
 import { Image } from "antd";
-import { useShop } from "../context/ShopContext";
 
 const HeaderPage = ({ selectCard, codeApp }) => {
-  const { shop, loading } = useShop();
-  const shopCodeSetting = shop?.appSetting?.filter(
-    (item) => item.appCode === codeApp,
-  )[0];
   const AppShop = [
     {
       name: "NetFlix",
@@ -46,23 +41,17 @@ const HeaderPage = ({ selectCard, codeApp }) => {
         preview={false}
         style={{
           width: "80px",
-          boxShadow: shopCodeSetting?.shadowColor
-            ? `${shopCodeSetting?.shadowColor}  0px 1px 10px`
-            : findApp?.shadowColor,
+          boxShadow: findApp?.shadowColor,
           borderRadius: codeApp === "NF" ? 8 : 16,
           margin: "10px 0px",
         }}
-        src={
-          shopCodeSetting?.logo?.url ? shopCodeSetting?.logo?.url : findApp?.defaultImage
-        }
-        alt={shopCodeSetting?.name ? shopCodeSetting?.name : findApp?.name}
+        src={findApp?.defaultImage}
+        alt={findApp?.name}
       />
-      <div className="hero" style={{ color: shop?.color || "white" }}>
+      <div className="hero" style={{ color: "white" }}>
         {selectCard ? null : (
           <>
-            <span>
-              {shop?.shopName || "Tomoru"} {findApp?.name} OTP
-            </span>
+            <span>{findApp?.name} OTP</span>
             <span>กรอกอีเมล {findApp?.name} ที่ต้องการรับรหัสยืนยัน</span>
           </>
         )}

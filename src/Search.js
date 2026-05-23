@@ -25,10 +25,8 @@ import { HomeFilled } from "@ant-design/icons";
 import HeaderPage from "./component/headerPage";
 import FadeIn from "./component/fadeIn";
 import CustomOtpInput from "./component/customOtpInput";
-import { useShop } from "../src/context/ShopContext";
 
 const SearchPage = ({ setCurrentView, appCode }) => {
-  const { shop } = useShop();
   const currentHost = window.location.host;
   const { Text } = Typography;
   const [emailArray, setEmailArray] = useState([]);
@@ -51,7 +49,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
     setSearching(true);
     const uncodeEmail = await encodeURIComponent(keyword);
 
-    const url = `https://getemails-wfudlrftlq-uc.a.run.app/getEmails?senderEmail=${uncodeEmail}&appCode=${appCode}`;
+    const url = `https://getemails-qhcvr3fagq-uc.a.run.app/getEmails?senderEmail=${uncodeEmail}&appCode=${appCode}`;
 
     const mail = await axios
       .get(url)
@@ -168,9 +166,6 @@ const SearchPage = ({ setCurrentView, appCode }) => {
     }
   };
 
-  const shopCodeSetting = shop?.appSetting?.find(
-    (item) => item.appCode === appCode,
-  );
   if (appCode === "PR") {
     return (
       <Row
@@ -213,18 +208,16 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                 padding: "0 20px",
               }}
             >
-              <img
+              {/* <img
                 width={100}
                 height={80}
                 src={
-                  shop?.logo?.url
-                    ? shop?.logo?.url
-                    : "https://img.rdcw.co.th/images/72e07a0ede77c82ee26addc2720f81aba8a1f093a3f2eca4cc3c2cc392ab0525.png"
+                  "https://img.rdcw.co.th/images/72e07a0ede77c82ee26addc2720f81aba8a1f093a3f2eca4cc3c2cc392ab0525.png"
                 }
                 alt="Netflix"
                 style={{ objectFit: "contain" }}
-              />
-              {currentHost === "tomoru.fun" ? (
+              /> */}
+              {/* {currentHost === "tomoru.fun" ? (
                 <button
                   className="btn red-btn"
                   onClick={() => setOpen(true)}
@@ -235,7 +228,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                 >
                   วิธีใช้งาน
                 </button>
-              ) : null}
+              ) : null} */}
             </div>
             <Breadcrumb
               style={{
@@ -253,8 +246,8 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                 },
                 {
                   title: (
-                    <Typography.Text style={{ color: shop?.color || "white" }}>
-                      {shopCodeSetting?.name || appCode}
+                    <Typography.Text style={{ color: "white" }}>
+                      {appCode}
                     </Typography.Text>
                   ),
                 },
@@ -279,16 +272,10 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                   style={{
                     borderRadius: "12px",
                     fontSize: "20px",
-                    background: shop?.colorBackgroundInputEmail
-                      ? shop?.colorBackgroundInputEmail
-                      : "none",
+                    background: "none",
                     maxWidth: "437px",
-                    color: shop?.colorTextInputEmail
-                      ? shop?.colorTextInputEmail
-                      : "white",
-                    borderColor: shop?.colorBorderInputEmail
-                      ? shop?.colorBorderInputEmail
-                      : "white",
+                    color: "white",
+                    borderColor: "white",
                   }}
                   type="text"
                   placeholder="Email Address"
@@ -298,37 +285,30 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                   <button
                     disabled
                     className={
-                      shop
-                        ? ""
-                        : appCode === "NF" || appCode === "TM"
-                          ? "btn red-btn"
-                          : "btn blue-btn"
+                      appCode === "NF" || appCode === "TM"
+                        ? "btn red-btn"
+                        : "btn blue-btn"
                     }
                     style={{
-                      backgroundImage: shop?.backgroundImageButton?.url
-                        ? `url(${shop?.backgroundImageButton?.url})`
-                        : "none",
+                      backgroundImage: "none",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
-                      padding: `12px ${shop?.horizontalButton || 30}px`,
+                      padding: `12px 30px`,
                       fontWeight: 500,
-                      height: `${shop?.verticalButton || 60}px`,
-                      color: shop?.colorTextButton || "white",
-                      borderRadius: shop?.borderRadiusButton || "20px",
+                      height: `60px`,
+                      color: "white",
+                      borderRadius: "20px",
                       cursor: "pointer",
-                      fontSize: shop?.fontSizeButton || "20px",
+                      fontSize: "20px",
                       border: "none",
                       boxShadow: `0px 3px 0px 0px ${
-                        shop?.colorShadowButton
-                          ? shop?.colorShadowButton
-                          : appCode === "NF" || appCode === "TM"
-                            ? "rgb(106, 5, 5)"
-                            : "rgb(23, 59, 109)"
+                        appCode === "NF" || appCode === "TM"
+                          ? "rgb(106, 5, 5)"
+                          : "rgb(23, 59, 109)"
                       }`,
-                      backgroundColor: shop?.backgroundImageButton?.url
-                        ? "none"
-                        : appCode === "NF" || appCode === "TM"
+                      backgroundColor:
+                        appCode === "NF" || appCode === "TM"
                           ? "#b20000"
                           : "#15a0dc",
                     }}
@@ -337,7 +317,6 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                       date={countdown}
                       key={countdown}
                       renderer={({ seconds }) => {
-                        
                         return (
                           <span>
                             <Spin
@@ -362,42 +341,35 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                       setVerifyPin(false);
                     }}
                     className={
-                      shop
-                        ? ""
-                        : appCode === "NF" || appCode === "TM"
-                          ? "btn red-btn"
-                          : "btn blue-btn"
+                      appCode === "NF" || appCode === "TM"
+                        ? "btn red-btn"
+                        : "btn blue-btn"
                     }
                     style={{
-                      backgroundImage: shop?.backgroundImageButton?.url
-                        ? `url(${shop?.backgroundImageButton?.url})`
-                        : "none",
+                      backgroundImage: "none",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
-                      padding: `12px ${shop?.horizontalButton || 30}px`,
+                      padding: `12px 30px`,
                       fontWeight: 500,
-                      height: `${shop?.verticalButton || 60}px`,
-                      color: shop?.colorTextButton || "white",
-                      borderRadius: shop?.borderRadiusButton || "20px",
+                      height: `60px`,
+                      color: "white",
+                      borderRadius: "20px",
                       cursor: "pointer",
-                      fontSize: shop?.fontSizeButton || "20px",
+                      fontSize: "20px",
                       border: "none",
                       boxShadow: `0px 3px 0px 0px ${
-                        shop?.colorShadowButton
-                          ? shop?.colorShadowButton
-                          : appCode === "NF" || appCode === "TM"
-                            ? "rgb(106, 5, 5)"
-                            : "rgb(23, 59, 109)"
+                        appCode === "NF" || appCode === "TM"
+                          ? "rgb(106, 5, 5)"
+                          : "rgb(23, 59, 109)"
                       }`,
-                      backgroundColor: shop?.backgroundImageButton?.url
-                        ? "none"
-                        : appCode === "NF" || appCode === "TM"
+                      backgroundColor:
+                        appCode === "NF" || appCode === "TM"
                           ? "#b20000"
                           : "#15a0dc",
                     }}
                   >
-                    {shop?.isShowIcon ? <SearchOutlined /> : null} ค้นหาอีเมล
+                    <SearchOutlined /> ค้นหาอีเมล
                   </button>
                 )}
               </div>

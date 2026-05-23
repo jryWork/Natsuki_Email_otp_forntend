@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./page/login";
 import Admin from "./page/admin";
 import { CaretDownOutlined, LoadingOutlined } from "@ant-design/icons";
-import { useShop } from "../src/context/ShopContext";
 import SearchPage from "./Search";
 import { Row } from "antd";
 
@@ -19,7 +18,7 @@ const isInStandaloneMode = () =>
 function App() {
   const [currentView, setCurrentView] = useState("landing");
   const [showA2HS, setShowA2HS] = useState(false);
-  const { shop, loading } = useShop();
+
   useEffect(() => {
     if (!isIos()) return;
 
@@ -57,30 +56,6 @@ function App() {
       borderAndShadowColor: "rgb(230 3 11)",
       defaultImage: "Netflix_icon.png",
     },
-    {
-      name: "DisneyPlus",
-      appCode: "DN",
-      borderAndShadowColor: "rgb(16 60 85)",
-      defaultImage: "Disney_plus_icon.jpg",
-    },
-    {
-      name: "TrueId",
-      appCode: "TM",
-      borderAndShadowColor: "rgb(156 27 27)",
-      defaultImage: "trueid.webp",
-    },
-    {
-      name: "GPT",
-      appCode: "GPT",
-      borderAndShadowColor: "rgb(15, 108, 82)",
-      defaultImage: "gptIcon.jpg",
-    },
-    {
-      name: "Prime",
-      appCode: "PR",
-      borderAndShadowColor: "rgb(15, 74, 108)",
-      defaultImage: "prime.webp",
-    },
   ];
   const renderContent = () => {
     switch (currentView) {
@@ -94,34 +69,15 @@ function App() {
               minHeight: "2vh",
             }}
           >
-            <nav>
-              <span>
-                <img
-                  width={100}
-                  height={100}
-                  className="imageAppPage"
-                  style={{
-                    objectFit: "contain",
-                  }}
-                  src={
-                    shop?.logo?.url
-                      ? shop?.logo?.url
-                      : "https://img.rdcw.co.th/images/72e07a0ede77c82ee26addc2720f81aba8a1f093a3f2eca4cc3c2cc392ab0525.png"
-                  }
-                  alt={shop ? shop?.shopName : "Tomoru"}
-                />
-              </span>
-            </nav>
-
             <FadeIn>
-              <h1 style={{ fontSize: "24px", color: shop?.color || "white" }}>
-                ยินดีต้อนรับสู่ {shop ? shop?.shopName : "Tomoru"} OTP
+              <h1 style={{ fontSize: "24px" }}>
+                ยินดีต้อนรับ
               </h1>
               <p
                 style={{
                   fontSize: "16px",
                   marginTop: "25px",
-                  color: shop?.color || "white",
+                  color: "white",
                 }}
               >
                 เลือกแอปที่ต้องการรับรหัสยืนยัน
@@ -141,12 +97,6 @@ function App() {
                 }}
               >
                 {AppShop?.map((item, index) => {
-                  const currentShop = shop?.appSetting?.find(
-                    (app) => app.appCode === item.appCode,
-                  );
-
-                  if (!currentShop?.isOn && shop) return null;
-
                   return (
                     <Image
                       key={index}
@@ -154,17 +104,13 @@ function App() {
                       onClick={() => handleViewChange(item.appCode)}
                       style={{
                         width: "120px",
-                        border: `1px solid ${currentShop?.shadowColor ? currentShop?.shadowColor : item.borderAndShadowColor}`,
-                        boxShadow: `${currentShop?.shadowColor ? currentShop?.shadowColor : item.borderAndShadowColor} 0px 4px 0px 0px`,
+                        border: `1px solid rgb(230 3 11)}`,
+                        boxShadow: `rgb(230 3 11) 0px 4px 0px 0px`,
                         borderRadius: 29,
                         objectFit: "contain",
                       }}
-                      src={
-                        currentShop?.logo?.url
-                          ? currentShop?.logo?.url
-                          : item.defaultImage
-                      }
-                      alt={`${item.appCode}_logo`}
+                      src={"Netflix_icon.png"}
+                      alt={`Netflix_icon.png`}
                     />
                   );
                 })}
@@ -190,23 +136,23 @@ function App() {
     }
   };
 
-  if (loading) {
-    return (
-      <Row style={{ height: "50vh" }} align={"middle"} justify={"center"}>
-        <Spin
-          spinning
-          indicator={<LoadingOutlined style={{ fontSize: "40px" }} />}
-        />
-      </Row>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <Row style={{ height: "50vh" }} align={"middle"} justify={"center"}>
+  //       <Spin
+  //         spinning
+  //         indicator={<LoadingOutlined style={{ fontSize: "40px" }} />}
+  //       />
+  //     </Row>
+  //   );
+  // }
 
   return (
     <>
       {showA2HS && (
         <div className="a2hs-popup">
           <div style={{ fontWeight: 700, marginBottom: 4 }}>
-            เพิ่ม {shop ? shop?.shopName : "Tomoru"} Web-app ไปหน้าจอหลัก
+            เพิ่ม Web-app ไปหน้าจอหลัก
           </div>
 
           <div style={{ fontSize: 13 }}>

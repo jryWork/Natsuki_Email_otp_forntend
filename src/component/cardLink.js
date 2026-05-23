@@ -1,7 +1,6 @@
 import { Row, Col, Typography, Badge } from "antd";
 import { CaretRightOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import FadeIn from "./fadeIn";
-import { useShop } from "../context/ShopContext";
 const CardLink = ({
   item,
   setSelectCard,
@@ -11,11 +10,6 @@ const CardLink = ({
   setVerifyPin,
   setEmailArray,
 }) => {
-  const { shop, loading } = useShop();
-  const shopCodeSetting = shop?.appSetting?.filter(
-    (item) => item.appCode === appCode,
-  )[0];
-
   const AppShop = [
     {
       name: "NetFlix",
@@ -109,7 +103,7 @@ const CardLink = ({
           maxHeight: "70px",
 
           overflow: "hidden",
-boxSizing: "border-box",
+          boxSizing: "border-box",
           width: "100%",
           maxWidth: 700,
           marginBottom: "10px",
@@ -122,13 +116,11 @@ boxSizing: "border-box",
 
           padding: "10px",
 
-          background: shop?.cardBackground?.url ? "none" : "white",
+          background: "white",
 
-          borderRadius: shop?.borderRadiusCard ? shop?.borderRadiusCard : 15,
+          borderRadius: 15,
 
-          boxShadow: `0px 3px 0px 0px ${
-            shop?.cardShadowColor || "rgb(188, 188, 188)"
-          }`,
+          boxShadow: `0px 3px 0px 0px ${"rgb(188, 188, 188)"}`,
 
           justifySelf: "center",
         }}
@@ -136,30 +128,6 @@ boxSizing: "border-box",
           setSelectCard(index + 1);
         }}
       >
-        {shop?.cardBackground?.url ? (
-          <div
-            style={{
-              position: "absolute",
-
-              inset: 0,
-
-              backgroundImage: shop?.cardBackground?.url
-                ? `url(${shop?.cardBackground?.url})`
-                : "none",
-
-              backgroundSize: "cover",
-
-              backgroundPosition: "center",
-
-              backgroundRepeat: "no-repeat",
-
-              opacity: shop?.opacityCard || 1,
-
-              zIndex: 0,
-            }}
-          />
-        ) : null}
-
         {/* content */}
         <div
           style={{
@@ -183,8 +151,8 @@ boxSizing: "border-box",
               }}
             >
               <img
-                src={shopCodeSetting?.logo?.url ? shopCodeSetting?.logo?.url : defualtApp?.defaultImage}
-                alt={shopCodeSetting?.logo?.name ? shopCodeSetting?.logo?.name : defualtApp?.name}
+                src={defualtApp?.defaultImage}
+                alt={defualtApp?.name}
                 width={"38"}
                 height={"38"}
                 style={{
@@ -203,7 +171,7 @@ boxSizing: "border-box",
 
                   fontWeight: 700,
 
-                  color: shop?.colorTextTitleCard || "black",
+                  color: "black",
                 }}
               >
                 {item?.date} น.
@@ -215,7 +183,7 @@ boxSizing: "border-box",
 
                   fontWeight: 700,
 
-                  color: shop?.colorTextDiscriptionCard || "#515151",
+                  color: "#515151",
 
                   marginBottom: 0,
                 }}
