@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { Image, Skeleton, Spin } from "antd";
+import { Image } from "antd";
 import FadeIn from "./component/fadeIn";
 import { Routes, Route } from "react-router-dom";
 import Login from "./page/login";
 import Admin from "./page/admin";
-import { CaretDownOutlined, LoadingOutlined } from "@ant-design/icons";
+import { CaretDownOutlined } from "@ant-design/icons";
 import SearchPage from "./Search";
-import { Row } from "antd";
 
 const isIos = () => /iphone|ipad|ipod/i.test(window.navigator.userAgent);
 
@@ -53,65 +52,75 @@ function App() {
     {
       name: "NetFlix",
       appCode: "NF",
-      borderAndShadowColor: "rgb(230 3 11)",
       defaultImage: "Netflix_icon.png",
+      color: "#c22424",
     },
   ];
+
   const renderContent = () => {
     switch (currentView) {
       case "landing":
         return (
-          <div
-            className="hero hide-scrollbar"
-            style={{
-              marginBottom: "10px",
-              marginTop: "15px",
-              minHeight: "2vh",
-            }}
-          >
+          <div className="landing-page hide-scrollbar">
             <FadeIn>
-              <h1 style={{ fontSize: "24px" }}>
-                ยินดีต้อนรับ
+
+              <h1 className="main-title">
+                WONDERLAND
+                <br />
+                STXR 💌
               </h1>
-              <p
-                style={{
-                  fontSize: "16px",
-                  marginTop: "25px",
-                  color: "white",
-                }}
-              >
-                เลือกแอปที่ต้องการรับรหัสยืนยัน
-              </p>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <CaretDownOutlined style={{ fontSize: 30 }} />
-              </div>
+            <p
+  className="sub-title"
+  style={{
+    textAlign: "center",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+  เลือกแพลตฟอร์มที่ต้องการค้นหาอีเมล
+</p>
 
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, 120px)",
-                  justifyContent: "center",
-                  gap: "20px",
-                  marginTop: 0,
-                }}
-              >
+<div
+  className="down-icon"
+  style={{
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+  <CaretDownOutlined />
+</div>
+
+              <div className="app-grid">
                 {AppShop?.map((item, index) => {
                   return (
-                    <Image
+                    <div
                       key={index}
-                      preview={false}
+                      className="app-card"
                       onClick={() => handleViewChange(item.appCode)}
                       style={{
-                        width: "120px",
-                        border: `1px solid rgb(230 3 11)}`,
-                        boxShadow: `rgb(230 3 11) 0px 4px 0px 0px`,
-                        borderRadius: 29,
-                        objectFit: "contain",
+                        border: `2px solid ${item.color}`,
+                        boxShadow: `0 8px 20px ${item.color}55`,
                       }}
-                      src={"Netflix_icon.png"}
-                      alt={`Netflix_icon.png`}
-                    />
+                    >
+                      <Image
+                        preview={false}
+                        src={item.defaultImage}
+                        alt={item.name}
+                        className="app-image"
+                      />
+
+                      <div
+                        className="app-name"
+                        style={{ color: item.color }}
+                      >
+                        {item.name}
+                      </div>
+                    </div>
                   );
                 })}
               </div>
@@ -127,35 +136,27 @@ function App() {
 
       case "TM":
         return <SearchPage setCurrentView={setCurrentView} appCode={"TM"} />;
+
       case "GPT":
         return <SearchPage setCurrentView={setCurrentView} appCode={"GPT"} />;
+
       case "PR":
         return <SearchPage setCurrentView={setCurrentView} appCode={"PR"} />;
+
       default:
         return <div>เกิดข้อผิดพลาด</div>;
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <Row style={{ height: "50vh" }} align={"middle"} justify={"center"}>
-  //       <Spin
-  //         spinning
-  //         indicator={<LoadingOutlined style={{ fontSize: "40px" }} />}
-  //       />
-  //     </Row>
-  //   );
-  // }
-
   return (
     <>
       {showA2HS && (
         <div className="a2hs-popup">
-          <div style={{ fontWeight: 700, marginBottom: 4 }}>
-            เพิ่ม Web-app ไปหน้าจอหลัก
+          <div className="popup-title">
+            📱 เพิ่ม Web-app ไปหน้าจอหลัก
           </div>
 
-          <div style={{ fontSize: 13 }}>
+          <div className="popup-text">
             กดปุ่ม{" "}
             <img
               src="/shareios.png"
@@ -167,17 +168,14 @@ function App() {
           </div>
 
           <button
+            className="cute-btn"
             onClick={() => {
               localStorage.setItem("a2hs-dismissed", "1");
               setShowA2HS(false);
             }}
           >
-            เข้าใจแล้ว
+            เข้าใจแล้ว 💖
           </button>
-
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <CaretDownOutlined style={{ fontSize: 30 }} />
-          </div>
         </div>
       )}
 
@@ -190,6 +188,7 @@ function App() {
             </div>
           }
         />
+
         <Route path="/login" element={<Login />} />
         <Route path="/assmin" element={<Admin />} />
       </Routes>
