@@ -147,7 +147,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
 
   return (
     <>
-      <div className="search-container">
+      <div className="search-container" style={{marginTop:"45px"}}>
         {!selectCard && (
           <>
             <FadeIn>

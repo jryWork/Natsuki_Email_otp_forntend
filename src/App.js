@@ -103,8 +103,8 @@ function App() {
                       className="app-card"
                       onClick={() => handleViewChange(item.appCode)}
                       style={{
-                        border: `2px solid ${item.color}`,
-                        boxShadow: `0 8px 20px ${item.color}55`,
+                        // border: `2px solid ${item.color}`,
+                        // boxShadow: `0 8px 20px ${item.color}55`,
                       }}
                     >
                       <Image
