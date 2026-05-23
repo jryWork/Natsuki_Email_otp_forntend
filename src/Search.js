@@ -217,7 +217,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                 alt="Netflix"
                 style={{ objectFit: "contain" }}
               /> */}
-              {/* {currentHost === "tomoru.fun" ? (
+              {/* {currentHost === "Wonderland.fun" ? (
                 <button
                   className="btn red-btn"
                   onClick={() => setOpen(true)}
@@ -450,7 +450,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
           >
             <strong>
               <p style={{ color: "#878787", fontSize: "10px" }}>
-                ©Tomoru Official 2026
+                ©Wonderland Official 2026
               </p>
             </strong>
           </div> */}
