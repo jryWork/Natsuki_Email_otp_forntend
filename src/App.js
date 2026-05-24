@@ -70,9 +70,10 @@ function App() {
           <div className="landing-page hide-scrollbar">
             <FadeIn>
               <h1 className="main-title">
-                WONDERLAND
+              ⋅˚₊‧𝒲𝑜𝓃𝒹𝑒𝓇𝓁𝒶𝓃𝒹‧₊˚ ⋅
+
                 <br />
-                STXR 💌
+⋅˚₊‧𝓈𝓉𝓍𝓇‧₊˚ ⋅
               </h1>
 
               <p
@@ -85,7 +86,7 @@ function App() {
                   alignItems: "center",
                 }}
               >
-                เลือกแพลตฟอร์มที่ต้องการค้นหาอีเมล
+                เลือก App ที่ต้องการรับรหัสยืนยัน
               </p>
 
               <div

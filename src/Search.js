@@ -189,8 +189,8 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             <FadeIn>
               <div className="search-header">
                 <div style={{ marginBottom: "15px" }}>
-                  <h1>ค้นหาอีเมล {appCode === "DN" ? "" : "6 หลัก"} 💌</h1>
-                  <p>กรอกอีเมลที่ได้รับจากการสั่งซื้อจากทางร้าน</p>
+                  <h1>ค้นหารหัสยืนยัน {appCode === "DN" ? "" : "6 หลัก"} 💌</h1>
+                  <p>กรอกอีเมลที่ได้รับจากทางร้าน wonderland เท่านั้น</p>
                 </div>
 
                 <Breadcrumb
@@ -200,7 +200,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                         <HomeFilled
                           onClick={() => setCurrentView("landing")}
                           style={{
-                            color: "#ff2d96",
+                            color: "#ffffff",
                             cursor: "pointer",
                           }}
                         />
@@ -208,7 +208,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                     },
                     {
                       title: (
-                        <Typography.Text style={{ color: "#555" }}>
+                        <Typography.Text style={{ color: "#ffffff" }}>
                           {appCode}
                         </Typography.Text>
                       ),
@@ -220,7 +220,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
               <div className="search-box">
                 <input
                   type="text"
-                  placeholder="Email Address"
+                  placeholder="กรุณากรอกอีเมล"
                   onChange={(e) => setKeyword(e.target.value)}
                 />
 
@@ -254,7 +254,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                       setTimer(15);
                     }}
                   >
-                    <SearchOutlined /> ค้นหาอีเมล
+                    <SearchOutlined /> ค้นหารหัสยืนยัน
                   </button>
                 )}
               </div>
@@ -306,9 +306,11 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             </Col>
           ) : (
             <Col span={24}>
-              <h3 style={{ color: "white", paddingBottom: "9px" }}>
-                **กรุณาดูเวลาของเมลให้ตรงกับที่คุณส่งรหัสมา
-              </h3>
+           <div className="glass-warning">
+  <h5>
+    ** กรุณาดูเวลาของเมลให้ตรงกับเวลาที่คุณส่งรหัสมา
+  </h5>
+</div>
               {emailArray?.map((item, index) => {
                 return (
                   <CardLink

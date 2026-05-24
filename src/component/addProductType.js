@@ -34,9 +34,9 @@ export default function AddProduct({ onSuccess }) {
   };
   return (
     <>
-      <Button type="primary" icon={<PlusOutlined />} onClick={showModal}>
+      {/* <Button type="primary" icon={<PlusOutlined />} onClick={showModal}>
         เพิ่ม App
-      </Button>
+      </Button> */}
       <Modal width={400} open={open} footer={false} closeIcon={false}>
         <Text style={{ fontSize: 18, fontWeight: 700 }}> เพิ่ม App</Text>
         <Divider style={{ margin: "10px 0px" }} />

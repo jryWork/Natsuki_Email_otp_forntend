@@ -28,7 +28,7 @@ export default function ShowSubject({ baseData }) {
       <EyeOutlined onClick={showModal} style={{ color: "#CCCCCC" }} />
 
       <Modal width={400} open={open} footer={false} closeIcon={false}>
-        <Text style={{ fontSize: 18, fontWeight: 700 }}>รายการชื่อเรื่อง</Text>
+        <Text style={{ fontSize: 18, fontWeight: 700 }}>รายการ Subject</Text>
         <Divider style={{ margin: "10px 0px" }} />
         <Row>
           {baseData?.subjects?.map((item, index) => {

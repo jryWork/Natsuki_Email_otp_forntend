@@ -102,7 +102,7 @@ export default function SubjectFilter() {
       <Col span={24} style={{ maxWidth: 1200 }}>
         <Row justify="space-between" align="middle">
           <Text style={{ fontSize: 24, fontWeight: 700 }}>
-            ชื่อเรื่อง Email
+            ปรับแต่งฟิลเตอร์ Subject อิอิ
           </Text>
           <AddProduct onSuccess={() => loadData(search, page)} />
         </Row>

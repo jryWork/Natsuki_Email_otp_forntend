@@ -35,8 +35,14 @@ export default function Admin() {
         >
           {/* LOGO */}
           <div style={{ flex: 1 }}>
-            <Image preview={false} width={100} src="/logotomo.png" />
-          </div>
+  <Image 
+    preview={false} 
+    width={50} 
+    height={50} // กำหนดส่วนสูงให้เท่ากับความกว้าง
+    src="/icon.png" 
+    style={{ borderRadius: '50%', objectFit: 'cover' }} // ใส่ inline style ตรงนี้
+  />
+</div>
 
           {/* ADMIN */}
           <div>

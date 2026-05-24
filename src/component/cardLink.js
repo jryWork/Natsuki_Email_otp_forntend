@@ -90,8 +90,8 @@ const CardLink = ({
 
   return (
     <Badge.Ribbon
-      text={item?.intime ? "พร้อมใช้งาน" : "หมดอายุ"}
-      color={item?.intime ? "green" : "red"}
+      text={item?.intime ? "พร้อมใช้" : "หมดอายุ"}
+      color={item?.intime ? "#00cd74" : "red"}
     >
       <div
         className="mail-card"
