@@ -61,6 +61,7 @@ function App() {
     switch (currentView) {
       case "landing":
         return (
+          
           <div className="landing-page hide-scrollbar">
             <FadeIn>
 

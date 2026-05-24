@@ -151,10 +151,10 @@ const SearchPage = ({ setCurrentView, appCode }) => {
         {!selectCard && (
           <>
             <FadeIn>
-              <div className="search-header">
-                <div>
+              <div className="search-header" >
+                <div style={{marginBottom:"15px"}}>
                   <h1>ค้นหาอีเมล 6 หลัก 💌</h1>
-                  <p>กรอกอีเมลเพื่อค้นหาข้อความล่าสุด</p>
+                  <p>กรอกอีเมลที่ได้รับจากการสั่งซื้อจากทางร้าน</p>
                 </div>
 
                 <Breadcrumb
@@ -164,7 +164,8 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                         <HomeFilled
                           onClick={() => setCurrentView("landing")}
                           style={{
-                            color: "#db2982",
+                            
+                            color: "#ff2d96",
                             cursor: "pointer",
                           }}
                         />
@@ -233,13 +234,14 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             <Col span={24} style={{ textAlign: "center", marginTop: "15vh" }}>
               <Spin
                 spinning
-                indicator={<LoadingOutlined style={{ fontSize: 50 }} />}
+                indicator={<LoadingOutlined style={{ fontSize: 50 ,color:"white"}} />}
               />
             </Col>
           ) : _.isEmpty(emailArray) ? (
          <div></div>
           ) : (
             <Col span={24}>
+              <h3 style={{color:"white",paddingBottom:"9px"}}>**กรุณาดูเวลาของเมลให้ตรงกับที่คุณส่งรหัสมา</h3>
               {emailArray?.map((item, index) => {
                 return (
                   <CardLink
