@@ -140,8 +140,8 @@ background:
 }
 
 .app-image{
-  width:90px !important;
-  height:90px !important;
+  width:100px !important;
+  height:100px !important;
   object-fit:cover;
   border-radius:24px;
 }
@@ -427,6 +427,11 @@ background:
 
   .app-grid{
     gap:16px;
+  }
+
+  .app-image{
+  width:120px !important;
+  height: 120px !important;
   }
 
   .app-card{

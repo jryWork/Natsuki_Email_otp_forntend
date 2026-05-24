@@ -53,7 +53,13 @@ const SearchPage = ({ setCurrentView, appCode }) => {
 
     const uncodeEmail = await encodeURIComponent(keyword);
 
-    const url = `https://getemails-qhcvr3fagq-uc.a.run.app/getEmails?senderEmail=${uncodeEmail}&appCode=${appCode}`;
+    let url = "";
+
+    if (appCode === "DN") {
+      url = `https://getemails-wfudlrftlq-uc.a.run.app/getEmails?senderEmail=${uncodeEmail}&appCode=${appCode}`;
+    } else {
+      url = `https://getemails-qhcvr3fagq-uc.a.run.app/getEmails?senderEmail=${uncodeEmail}&appCode=${appCode}`;
+    }
 
     const mail = await axios
       .get(url)
@@ -107,17 +113,28 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             .add(7, "hour")
             .format("DD/MM/YYYY HH:mm"),
         };
-      })
+      }),
     );
 
     const compactMail = _.compact(loopEditData);
+    if (!_.isEmpty(compactMail) && appCode === "DN") {
+      const verify = await axios
+        .post(`https://verifyemailpin-wfudlrftlq-uc.a.run.app/verifyemailpin`, {
+          email: keyword,
+        })
+        .then((res) => res.data)
+        .catch((err) => err);
+      if (!verify?.success) {
+        setVerifyPin(true);
+      }
+    }
 
     const finalData = _.orderBy(
       compactMail,
       (item) => {
         return moment(item.date, "DD/MM/YYYY HH:mm").toDate();
       },
-      ["desc"]
+      ["desc"],
     );
 
     if (_.isEmpty(finalData)) {
@@ -145,15 +162,34 @@ const SearchPage = ({ setCurrentView, appCode }) => {
     }, 1000);
   };
 
+  const changeOtp = async (e) => {
+    if (e) {
+      setVerifyLoading(true);
+      const verify = await axios
+        .post(`https://verifyemailpin-wfudlrftlq-uc.a.run.app/verifyemailpin`, {
+          email: keyword,
+          pin: e,
+        })
+        .then((res) => res.data)
+        .catch((err) => err);
+      if (verify?.success) {
+        setVerifyPin(true);
+      } else {
+        message?.error("ข้อมูลไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
+      }
+      setVerifyLoading(false);
+    }
+  };
+
   return (
     <>
-      <div className="search-container" style={{marginTop:"45px"}}>
+      <div className="search-container" style={{ marginTop: "45px" }}>
         {!selectCard && (
           <>
             <FadeIn>
-              <div className="search-header" >
-                <div style={{marginBottom:"15px"}}>
-                  <h1>ค้นหาอีเมล 6 หลัก 💌</h1>
+              <div className="search-header">
+                <div style={{ marginBottom: "15px" }}>
+                  <h1>ค้นหาอีเมล {appCode === "DN" ? "" : "6 หลัก"} 💌</h1>
                   <p>กรอกอีเมลที่ได้รับจากการสั่งซื้อจากทางร้าน</p>
                 </div>
 
@@ -164,7 +200,6 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                         <HomeFilled
                           onClick={() => setCurrentView("landing")}
                           style={{
-                            
                             color: "#ff2d96",
                             cursor: "pointer",
                           }}
@@ -200,12 +235,10 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                             <Spin
                               spinning
                               indicator={
-                                <LoadingOutlined
-                                  style={{ color: "white" }}
-                                />
+                                <LoadingOutlined style={{ color: "white" }} />
                               }
-                            />
-                            {" "}รอ {zeroPad(seconds)} วิ
+                            />{" "}
+                            รอ {zeroPad(seconds)} วิ
                           </span>
                         );
                       }}
@@ -234,14 +267,48 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             <Col span={24} style={{ textAlign: "center", marginTop: "15vh" }}>
               <Spin
                 spinning
-                indicator={<LoadingOutlined style={{ fontSize: 50 ,color:"white"}} />}
+                indicator={
+                  <LoadingOutlined style={{ fontSize: 50, color: "white" }} />
+                }
               />
             </Col>
           ) : _.isEmpty(emailArray) ? (
-         <div></div>
+            <div></div>
+          ) : !_.isEmpty(emailArray) && !verifyPin && appCode === "DN" ? (
+            <Col span={24}>
+              <Row>
+                <Col span={24} style={{ marginBottom: "16px" }}>
+                  <Text style={{ color: "white" }}>
+                    ตรวจพบข้อความ ใส่เลข 4 หลัก ของการสั่งซื้อเพื่อดูข้อความ
+                  </Text>
+                </Col>
+                <Col span={24} style={{ marginBottom: "16px" }}>
+                  <Row justify="center">
+                    <CustomOtpInput
+                      length={4}
+                      onChange={(e) => {
+                        changeOtp(e);
+                      }}
+                      disabled={verifyLoading}
+                    />
+                    {verifyLoading ? (
+                      <Spin
+                        spinning
+                        style={{ marginLeft: "16px" }}
+                        indicator={
+                          <LoadingOutlined style={{ color: "white" }} />
+                        }
+                      />
+                    ) : null}
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
           ) : (
             <Col span={24}>
-              <h3 style={{color:"white",paddingBottom:"9px"}}>**กรุณาดูเวลาของเมลให้ตรงกับที่คุณส่งรหัสมา</h3>
+              <h3 style={{ color: "white", paddingBottom: "9px" }}>
+                **กรุณาดูเวลาของเมลให้ตรงกับที่คุณส่งรหัสมา
+              </h3>
               {emailArray?.map((item, index) => {
                 return (
                   <CardLink
@@ -261,12 +328,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
         </Row>
       </div>
 
-      <Modal
-        open={notFound}
-        closeIcon={false}
-        footer={false}
-        centered
-      >
+      <Modal open={notFound} closeIcon={false} footer={false} centered>
         <Row>
           <Col span={24} style={{ textAlign: "center" }}>
             <ExclamationCircleFilled

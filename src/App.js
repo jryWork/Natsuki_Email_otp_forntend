@@ -55,46 +55,50 @@ function App() {
       defaultImage: "Netflix_icon.png",
       color: "#c22424",
     },
+    {
+      name: "Disney Plus",
+      appCode: "DN",
+      color: "#0097ed",
+      defaultImage: "Disney_plus_icon.jpg",
+    },
   ];
 
   const renderContent = () => {
     switch (currentView) {
       case "landing":
         return (
-          
           <div className="landing-page hide-scrollbar">
             <FadeIn>
-
               <h1 className="main-title">
                 WONDERLAND
                 <br />
                 STXR 💌
               </h1>
 
-            <p
-  className="sub-title"
-  style={{
-    textAlign: "center",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }}
->
-  เลือกแพลตฟอร์มที่ต้องการค้นหาอีเมล
-</p>
+              <p
+                className="sub-title"
+                style={{
+                  textAlign: "center",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                เลือกแพลตฟอร์มที่ต้องการค้นหาอีเมล
+              </p>
 
-<div
-  className="down-icon"
-  style={{
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }}
->
-  <CaretDownOutlined />
-</div>
+              <div
+                className="down-icon"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CaretDownOutlined />
+              </div>
 
               <div className="app-grid">
                 {AppShop?.map((item, index) => {
@@ -103,10 +107,6 @@ function App() {
                       key={index}
                       className="app-card"
                       onClick={() => handleViewChange(item.appCode)}
-                      style={{
-                        // border: `2px solid ${item.color}`,
-                        // boxShadow: `0 8px 20px ${item.color}55`,
-                      }}
                     >
                       <Image
                         preview={false}
@@ -115,10 +115,7 @@ function App() {
                         className="app-image"
                       />
 
-                      <div
-                        className="app-name"
-                        style={{ color: item.color }}
-                      >
+                      <div className="app-name" style={{ color: item.color }}>
                         {item.name}
                       </div>
                     </div>
@@ -153,9 +150,7 @@ function App() {
     <>
       {showA2HS && (
         <div className="a2hs-popup">
-          <div className="popup-title">
-            📱 เพิ่ม Web-app ไปหน้าจอหลัก
-          </div>
+          <div className="popup-title">📱 เพิ่ม Web-app ไปหน้าจอหลัก</div>
 
           <div className="popup-text">
             กดปุ่ม{" "}

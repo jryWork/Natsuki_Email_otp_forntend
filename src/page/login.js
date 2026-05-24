@@ -61,12 +61,6 @@ export default function Login() {
           title="เข้าสู่ระบบ Admin"
           style={{ width: 360, borderRadius: "25px" }}
         >
-          <Image
-            preview={false}
-            width={110}
-            src="/logotomo.png"
-            style={{ margin: "-15px 0px 0px 10px" }}
-          />
 
           <Form layout="vertical" onFinish={onFinish}>
             <Form.Item

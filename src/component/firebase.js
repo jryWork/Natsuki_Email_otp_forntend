@@ -11,7 +11,7 @@ const firebaseConfig = {
   messagingSenderId: "127965436139",
   appId: "1:127965436139:web:c7248df7cbaa846bdfc6ae",
   measurementId: "G-6XJ72M3HGV",
-  // databaseURL: "https://backend-email-e48b6-default-rtdb.asia-southeast1.firebasedatabase.app"
+  databaseURL: "https://emailotp-d2991-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 const app = initializeApp(firebaseConfig);

@@ -4,7 +4,6 @@ import { Typography, Layout, Row, Image, Tabs } from "antd";
 import { signOut } from "firebase/auth";
 import { auth } from "../component/firebase";
 import { LogoutOutlined } from "@ant-design/icons";
-import EmailPin from "../component/emailPin";
 import SubjectFilter from "../component/subjectFilter";
 
 export default function Admin() {
@@ -20,18 +19,6 @@ export default function Admin() {
     navigate("/login", { replace: true });
   };
 
-  const items = [
-    {
-      key: "1",
-      label: "PIN Email",
-      children: <EmailPin />,
-    },
-    {
-      key: "2",
-      label: "หัวข้อ Email",
-      children: <SubjectFilter />,
-    },
-  ];
   return (
     <Layout style={{ minHeight: "100dvh" }}>
       <Header
@@ -62,7 +49,7 @@ export default function Admin() {
       </Header>
 
       <Content style={{ padding: "16px" }}>
-        <Tabs items={items} />
+        <SubjectFilter />
       </Content>
     </Layout>
   );
