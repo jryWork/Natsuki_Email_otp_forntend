@@ -27,9 +27,10 @@ export default function AddButton({ baseData, onSuccess }) {
   const addSubjectFunc = async (value) => {
     const db = getDatabase(appFirebase);
     const newData = ref(db, "quarySubjects/" + baseData?.id);
+    const subjects = !_.isEmpty(baseData?.subjects) ? baseData?.subjects : [];
     set(newData, {
       ...baseData,
-      subjects: _.concat(baseData?.subjects, value?.subjects),
+      subjects: _.concat(subjects, value?.subjects),
       updatedAt: serverTimestamp(),
     }).catch((err) => {
       console.log("err :", err);

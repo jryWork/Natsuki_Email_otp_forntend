@@ -14,6 +14,7 @@ import EditSubject from "./editSubject";
 import AddProduct from "./addProductType";
 import AddSubject from "./addSubject";
 import DeleteSubject from "./deleteSubject";
+import ShowSubject from "./showSubject";
 
 const { Text } = Typography;
 const PAGE_SIZE = 10;
@@ -76,10 +77,11 @@ export default function SubjectFilter() {
       title: "Option",
       dataIndex: "pinUpdatedAt",
       align: "center",
-      width: 90,
+      width: 120,
       render: (ts, record) => {
         return (
           <Row justify="center" style={{ columnGap: 8 }}>
+            <ShowSubject baseData={record} />
             <AddSubject baseData={record} onSuccess={() => loadData(search, page)}/>
             <EditSubject
               baseData={record}
@@ -102,7 +104,7 @@ export default function SubjectFilter() {
           <Text style={{ fontSize: 24, fontWeight: 700 }}>
             ชื่อเรื่อง Email
           </Text>
-          {/* <AddProduct onSuccess={() => loadData(search, page)} /> */}
+          <AddProduct onSuccess={() => loadData(search, page)} />
         </Row>
 
         <Divider style={{ margin: "10px 0" }} />
