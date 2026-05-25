@@ -13,7 +13,6 @@ const CardLink = ({
   selectCard,
   appCode,
   setVerifyPin,
-  setEmailArray,
 }) => {
   const AppShop = [
     {
@@ -64,7 +63,6 @@ const CardLink = ({
             onClick={() => {
               setSelectCard(null);
               setVerifyPin(false);
-              setEmailArray([]);
             }}
           >
             <ArrowLeftOutlined /> ย้อนกลับ

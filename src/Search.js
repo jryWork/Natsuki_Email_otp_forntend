@@ -198,7 +198,10 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                     {
                       title: (
                         <HomeFilled
-                          onClick={() => setCurrentView("landing")}
+                          onClick={() => {
+                            setCurrentView("landing");
+                            setEmailArray([]);
+                          }}
                           style={{
                             color: "#ffffff",
                             cursor: "pointer",
@@ -306,11 +309,9 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             </Col>
           ) : (
             <Col span={24}>
-           <div className="glass-warning">
-  <h5>
-    ** กรุณาดูเวลาของเมลให้ตรงกับเวลาที่คุณส่งรหัสมา
-  </h5>
-</div>
+              <div className="glass-warning">
+                <h5>** กรุณาดูเวลาของเมลให้ตรงกับเวลาที่คุณส่งรหัสมา</h5>
+              </div>
               {emailArray?.map((item, index) => {
                 return (
                   <CardLink
@@ -320,7 +321,6 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                     index={index}
                     selectCard={selectCard}
                     setVerifyPin={setVerifyPin}
-                    setEmailArray={setEmailArray}
                     appCode={appCode}
                   />
                 );
