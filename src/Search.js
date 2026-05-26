@@ -92,9 +92,12 @@ const SearchPage = ({ setCurrentView, appCode }) => {
         }
 
         if (item.date) {
-          const add15min = moment(item.date, "DD/MM/YYYY HH:mm")
-            .add(15, "minute")
-            .add(7, "hour");
+          const add15min =
+            appCode === "DN"
+              ? moment(item.date, "DD/MM/YYYY HH:mm")
+                  .add(15, "minute")
+                  .add(7, "hour")
+              : moment(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").add(15, "minute");
 
           const isBefore15min = moment(add15min).isAfter(moment(Date.now()));
 
