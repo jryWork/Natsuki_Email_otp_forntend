@@ -67,6 +67,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
       .catch((err) => err);
 
     if (mail?.response?.data?.error) {
+      debugger;
       const errorText = mail?.response?.data?.error;
 
       if (errorText === "Invalid sender email format.") {
@@ -79,17 +80,29 @@ const SearchPage = ({ setCurrentView, appCode }) => {
       setSearching(false);
       return;
     }
+
     const loopEditData = await Promise.all(
       mail?.emails?.map((item) => {
         let html,
           intime = true;
-        if (item.html) {
-          const indexTable = item.html.indexOf("<table");
+        if (appCode === "DN") {
+          if (item.html) {
+            const indexTable = item.html.indexOf("<table");
 
-          if (indexTable !== -1) {
-            html = item.html.slice(indexTable);
+            if (indexTable !== -1) {
+              html = item.html.slice(indexTable);
+            }
+          }
+        } else {
+          if (item.snippet) {
+            const indexTable = item.snippet.indexOf("<table");
+
+            if (indexTable !== -1) {
+              html = item.snippet.slice(indexTable);
+            }
           }
         }
+
 
         if (item.date) {
           const add15min = moment(item.date, "DD/MM/YYYY HH:mm")
@@ -109,9 +122,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
               ? moment(item.date, "DD/MM/YYYY HH:mm")
                   .add(7, "hour")
                   .format("DD/MM/YYYY HH:mm")
-              : moment(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").format(
-                  "DD/MM/YYYY HH:mm",
-                ),
+              : moment(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").format("DD/MM/YYYY HH:mm"),
         };
       }),
     );
