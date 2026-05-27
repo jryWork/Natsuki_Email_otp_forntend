@@ -192,8 +192,19 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             <FadeIn>
               <div className="search-header">
                 <div style={{ marginBottom: "15px" }}>
-                  <h1>ค้นหารหัสยืนยัน {appCode === "DN" ? "" : "6 หลัก"} 💌</h1>
-                  <p>กรอกอีเมลที่ได้รับจากทางร้าน wonderland เท่านั้น</p>
+                 <div id="appBadge" className="app-badge">
+        <span className="app-dot-select"
+         id="appDot"
+           style={{
+    background:
+      appCode === "NF"
+        ? "rgb(229, 9, 20)"
+        : "rgb(40, 154, 162)",
+  }} ></span>
+              <span id="appBadgeLabel">{appCode === "NF" ? "Netflix" : "Disney+"}</span>
+             </div>
+                  <h1 style={{marginTop:"-10px"}}>รหัสยืนยัน {appCode === "DN" ? "4 หลัก" : "& ครัวเรือน"} 💌</h1>
+                  <p>ใส่เมลที่ซื้อจากร้าน wonderland_stxr เท่านั้น</p>
                 </div>
 
                 <Breadcrumb
@@ -215,7 +226,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                     {
                       title: (
                         <Typography.Text style={{ color: "#ffffff" }}>
-                          {appCode}
+                          {appCode === "NF"? "Netflix": "Disney+"}
                         </Typography.Text>
                       ),
                     },
