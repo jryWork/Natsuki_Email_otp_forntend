@@ -207,20 +207,26 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                   <p>ใส่เมลที่ซื้อจากร้าน wonderland_stxr เท่านั้น</p>
                 </div>
 
-                <Breadcrumb
+                {/* <Breadcrumb
                   items={[
                     {
                       title: (
-                        <HomeFilled
-                          onClick={() => {
-                            setCurrentView("landing");
-                            setEmailArray([]);
-                          }}
-                          style={{
-                            color: "#ffffff",
-                            cursor: "pointer",
-                          }}
-                        />
+                       <Button
+  type="text"
+  onClick={() => {
+    setCurrentView("landing");
+    setEmailArray([]);
+  }}
+  style={{
+    color: "#ffffff",
+    display: "flex",
+    alignItems: "center",
+    gap: "4px",
+  }}
+>
+  <HomeFilled />
+  ย้อนกลับ
+</Button>
                       ),
                     },
                     {
@@ -231,7 +237,38 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                       ),
                     },
                   ]}
-                />
+                /> */}
+  <Button
+          type="text"
+          onClick={() => {
+            setCurrentView("landing");
+            setEmailArray([]);
+          }}
+          style={{
+            color: "#ffffff",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            borderRadius: "12px",
+            background: "rgba(171, 0, 0, 0.06)",
+            border: "1px solid rgba(255, 255, 255, 0.96)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            transition: "all 0.25s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background =
+              "rgba(255,255,255,0.14)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background =
+              "rgba(255,255,255,0.06)";
+          }}
+        >
+          <HomeFilled />
+          ย้อนกลับ
+        </Button>
+
               </div>
 
               <div className="search-box">
