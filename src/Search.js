@@ -22,7 +22,7 @@ import {
 import axios from "axios";
 import CardLink from "./component/cardLink";
 import Countdown, { zeroPad } from "react-countdown-now";
-import moment from "moment";
+import dayjs from "dayjs";
 import { HomeFilled } from "@ant-design/icons";
 import HeaderPage from "./component/headerPage";
 import FadeIn from "./component/fadeIn";
@@ -94,12 +94,12 @@ const SearchPage = ({ setCurrentView, appCode }) => {
         if (item.date) {
           const add15min =
             appCode === "DN"
-              ? moment(item.date, "DD/MM/YYYY HH:mm")
+              ? dayjs(item.date, "DD/MM/YYYY HH:mm")
                   .add(15, "minute")
                   .add(7, "hour")
-              : moment(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").add(15, "minute");
+              : dayjs(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").add(15, "minute");
 
-          const isBefore15min = moment(add15min).isAfter(moment(Date.now()));
+          const isBefore15min = dayjs(add15min).isAfter(dayjs(Date.now()));
 
           intime = isBefore15min;
         }
@@ -109,10 +109,10 @@ const SearchPage = ({ setCurrentView, appCode }) => {
           intime: intime,
           date:
             appCode === "DN"
-              ? moment(item.date, "DD/MM/YYYY HH:mm")
+              ? dayjs(item.date, "DD/MM/YYYY HH:mm")
                   .add(7, "hour")
                   .format("DD/MM/YYYY HH:mm")
-              : moment(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").format(
+              : dayjs(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").format(
                   "DD/MM/YYYY HH:mm",
                 ),
         };
@@ -135,7 +135,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
     const finalData = _.orderBy(
       compactMail,
       (item) => {
-        return moment(item.date, "DD/MM/YYYY HH:mm").toDate();
+        return dayjs(item.date, "DD/MM/YYYY HH:mm").toDate();
       },
       ["desc"],
     );
