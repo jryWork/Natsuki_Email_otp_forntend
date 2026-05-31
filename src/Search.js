@@ -17,6 +17,7 @@ import {
   LoadingOutlined,
   ExclamationCircleFilled,
   SearchOutlined,
+  CaretLeftOutlined
 } from "@ant-design/icons";
 
 import axios from "axios";
