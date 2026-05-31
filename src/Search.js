@@ -17,17 +17,19 @@ import {
   LoadingOutlined,
   ExclamationCircleFilled,
   SearchOutlined,
+  CaretLeftOutlined,
 } from "@ant-design/icons";
 
 import axios from "axios";
 import CardLink from "./component/cardLink";
 import Countdown, { zeroPad } from "react-countdown-now";
-import moment from "moment";
-import { CaretLeftOutlined } from "@ant-design/icons";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { HomeFilled } from "@ant-design/icons";
 import HeaderPage from "./component/headerPage";
 import FadeIn from "./component/fadeIn";
 import CustomOtpInput from "./component/customOtpInput";
-
+dayjs.extend(customParseFormat);
 const SearchPage = ({ setCurrentView, appCode }) => {
   const { Text } = Typography;
 
@@ -94,12 +96,12 @@ const SearchPage = ({ setCurrentView, appCode }) => {
         if (item.date) {
           const add15min =
             appCode === "DN"
-              ? moment(item.date, "DD/MM/YYYY HH:mm")
+              ? dayjs(item.date, "DD/MM/YYYY HH:mm")
                   .add(15, "minute")
                   .add(7, "hour")
-              : moment(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").add(15, "minute");
+              : dayjs(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").add(15, "minute");
 
-          const isBefore15min = moment(add15min).isAfter(moment(Date.now()));
+          const isBefore15min = dayjs(add15min).isAfter(dayjs(Date.now()));
 
           intime = isBefore15min;
         }
@@ -109,10 +111,10 @@ const SearchPage = ({ setCurrentView, appCode }) => {
           intime: intime,
           date:
             appCode === "DN"
-              ? moment(item.date, "DD/MM/YYYY HH:mm")
+              ? dayjs(item.date, "DD/MM/YYYY HH:mm")
                   .add(7, "hour")
                   .format("DD/MM/YYYY HH:mm")
-              : moment(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").format(
+              : dayjs(item.date, "YYYY-MM-DDTHH:mm:ss.000Z").format(
                   "DD/MM/YYYY HH:mm",
                 ),
         };
@@ -135,7 +137,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
     const finalData = _.orderBy(
       compactMail,
       (item) => {
-        return moment(item.date, "DD/MM/YYYY HH:mm").toDate();
+        return dayjs(item.date, "DD/MM/YYYY HH:mm").toDate();
       },
       ["desc"],
     );
@@ -192,52 +194,52 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             <FadeIn>
               <div className="search-header">
                 <div style={{ marginBottom: "15px" }}>
+                  <div id="appBadge" className="app-badge">
+                    <span
+                      id="appDot"
+                      className="app-dot-select"
+                      style={{
+                        backgroundImage: `url(${
+                          appCode === "NF"
+                            ? "Netflix_icon.png"
+                            : "/Disney_plus_icon.jpg"
+                        })`,
+                      }}
+                    ></span>
+                    <span id="appBadgeLabel">
+                      {appCode === "NF" ? "Netflix" : "Disney+"}
+                    </span>
+                  </div>
 
-
-             
-<div id="appBadge" className="app-badge">
-                  <span
-  id="appDot"
-  className="app-dot-select"
-  style={{
-    backgroundImage: `url(${
-      appCode === "NF"
-        ? "Netflix_icon.png"
-        : "/Disney_plus_icon.jpg"
-    })`,
-  }}
-></span>
-              <span id="appBadgeLabel">{appCode === "NF" ? "Netflix" : "Disney+"}</span>
-             </div>
-  
-                  <h1 style={{marginTop:"-10px"}}>รหัสยืนยัน {appCode === "DN" ? "4 หลัก" : "& ครัวเรือน"} 💌</h1>
+                  <h1 style={{ marginTop: "-10px" }}>
+                    รหัสยืนยัน {appCode === "DN" ? "4 หลัก" : "& ครัวเรือน"} 💌
+                  </h1>
                   <p>ใส่เมลที่ซื้อจากร้าน wonderland_stxr เท่านั้น</p>
                 </div>
 
-              
-  <Button
-  type="text"
-  style={{height:"45px",marginBottom:"-10px",padding:"8px 11px 8px 0px"}}
-  className="app-badge"
-  onClick={() => {
-    setCurrentView("landing");
-    setEmailArray([]);
-  }}
->
-  <span
-    id="appDot"
-    className="app-dot-select"
-  >
-    <CaretLeftOutlined
-      style={{
-        fontSize: "26px",
-        color: "white",
-      }}
-    />
-  </span>
-  ย้อนกลับ
-</Button>
-
+                <Button
+                  type="text"
+                  style={{
+                    height: "45px",
+                    marginBottom: "-10px",
+                    padding: "8px 11px 8px 0px",
+                  }}
+                  className="app-badge"
+                  onClick={() => {
+                    setCurrentView("landing");
+                    setEmailArray([]);
+                  }}
+                >
+                  <span id="appDot" className="app-dot-select">
+                    <CaretLeftOutlined
+                      style={{
+                        fontSize: "26px",
+                        color: "white",
+                      }}
+                    />
+                  </span>
+                  ย้อนกลับ
+                </Button>
               </div>
 
               <div className="search-box">
