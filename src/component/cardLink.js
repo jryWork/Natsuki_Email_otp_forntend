@@ -62,7 +62,7 @@ const CardLink = ({
             className="back-btn"
             onClick={() => {
               setSelectCard(null);
-              setVerifyPin(false);
+              // setVerifyPin(false);
             }}
           >
             <ArrowLeftOutlined /> ย้อนกลับ
