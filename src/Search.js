@@ -23,7 +23,7 @@ import axios from "axios";
 import CardLink from "./component/cardLink";
 import Countdown, { zeroPad } from "react-countdown-now";
 import moment from "moment";
-import { HomeFilled } from "@ant-design/icons";
+import { CaretLeftOutlined } from "@ant-design/icons";
 import HeaderPage from "./component/headerPage";
 import FadeIn from "./component/fadeIn";
 import CustomOtpInput from "./component/customOtpInput";
@@ -192,82 +192,51 @@ const SearchPage = ({ setCurrentView, appCode }) => {
             <FadeIn>
               <div className="search-header">
                 <div style={{ marginBottom: "15px" }}>
-                 <div id="appBadge" className="app-badge">
-        <span className="app-dot-select"
-         id="appDot"
-           style={{
-    background:
+
+
+             
+<div id="appBadge" className="app-badge">
+                  <span
+  id="appDot"
+  className="app-dot-select"
+  style={{
+    backgroundImage: `url(${
       appCode === "NF"
-        ? "rgb(229, 9, 20)"
-        : "rgb(40, 154, 162)",
-  }} ></span>
+        ? "Netflix_icon.png"
+        : "/Disney_plus_icon.jpg"
+    })`,
+  }}
+></span>
               <span id="appBadgeLabel">{appCode === "NF" ? "Netflix" : "Disney+"}</span>
              </div>
+  
                   <h1 style={{marginTop:"-10px"}}>รหัสยืนยัน {appCode === "DN" ? "4 หลัก" : "& ครัวเรือน"} 💌</h1>
                   <p>ใส่เมลที่ซื้อจากร้าน wonderland_stxr เท่านั้น</p>
                 </div>
 
-                {/* <Breadcrumb
-                  items={[
-                    {
-                      title: (
-                       <Button
+              
+  <Button
   type="text"
+  style={{height:"45px",marginBottom:"-10px",padding:"8px 11px 8px 0px"}}
+  className="app-badge"
   onClick={() => {
     setCurrentView("landing");
     setEmailArray([]);
   }}
-  style={{
-    color: "#ffffff",
-    display: "flex",
-    alignItems: "center",
-    gap: "4px",
-  }}
 >
-  <HomeFilled />
+  <span
+    id="appDot"
+    className="app-dot-select"
+  >
+    <CaretLeftOutlined
+      style={{
+        fontSize: "26px",
+        color: "white",
+      }}
+    />
+  </span>
   ย้อนกลับ
 </Button>
-                      ),
-                    },
-                    {
-                      title: (
-                        <Typography.Text style={{ color: "#ffffff" }}>
-                          {appCode === "NF"? "Netflix": "Disney+"}
-                        </Typography.Text>
-                      ),
-                    },
-                  ]}
-                /> */}
-  <Button
-          type="text"
-          onClick={() => {
-            setCurrentView("landing");
-            setEmailArray([]);
-          }}
-          style={{
-            color: "#ffffff",
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            borderRadius: "12px",
-            background: "rgba(171, 0, 0, 0.06)",
-            border: "1px solid rgba(255, 255, 255, 0.96)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            transition: "all 0.25s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background =
-              "rgba(255,255,255,0.14)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background =
-              "rgba(255,255,255,0.06)";
-          }}
-        >
-          <HomeFilled />
-          ย้อนกลับ
-        </Button>
 
               </div>
 
