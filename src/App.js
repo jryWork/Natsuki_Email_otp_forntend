@@ -52,14 +52,14 @@ function App() {
     {
       name: "NetFlix",
       appCode: "NF",
-      defaultImage: "Netflix_icon.png",
-      color: "#c22424",
+      defaultImage: "wondernetflix.png",
+      color: "#ffffff",
     },
     {
       name: "Disney Plus",
       appCode: "DN",
-      color: "#0097ed",
-      defaultImage: "Disney_plus_icon.jpg",
+      color: "#ffffff",
+      defaultImage: "wonderdisney.png",
     },
   ];
 
@@ -69,12 +69,8 @@ function App() {
         return (
           <div className="landing-page hide-scrollbar">
             <FadeIn>
-              <h1 className="main-title">
-              ⋅˚₊‧𝒲𝑜𝓃𝒹𝑒𝓇𝓁𝒶𝓃𝒹‧₊˚ ⋅
-
-                <br />
-⋅˚₊‧𝓈𝓉𝓍𝓇‧₊˚ ⋅
-              </h1>
+           <div className="banner-header">
+              </div>
 
               <p
                 className="sub-title"
@@ -116,7 +112,7 @@ function App() {
                         className="app-image"
                       />
 
-                      <div className="app-name" style={{ color: item.color }}>
+                      <div className="app-name" >
                         {item.name}
                       </div>
                     </div>

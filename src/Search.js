@@ -238,7 +238,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                       }}
                     />
                   </span>
-                  ย้อนกลับ
+                  <text style={{marginLeft:"-10px"}}>ย้อนกลับ</text>
                 </Button>
               </div>
 
