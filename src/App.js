@@ -147,17 +147,17 @@ function App() {
     <>
       {showA2HS && (
         <div className="a2hs-popup">
-          <div className="popup-title">📱 เพิ่ม Web-app ไปหน้าจอหลัก</div>
+          <div className="popup-title">📱 เพิ่ม Web-app ไปหน้าจอหลักง่ายๆโดย</div>
 
           <div className="popup-text">
-            กดปุ่ม{" "}
+            กดปุ่มแชร์{" "}
             <img
               src="/shareios.png"
               width={18}
               style={{ verticalAlign: "middle" }}
               alt="Share"
             />{" "}
-            แล้วเลือก <b>Add to Home Screen</b>
+            แล้วเลือก <b>เพิ่มไปยังหน้าจอโฮม</b>
           </div>
 
           <button

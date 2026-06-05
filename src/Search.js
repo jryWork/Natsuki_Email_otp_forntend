@@ -332,7 +332,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
           ) : (
             <Col span={24}>
               <div className="glass-warning">
-                <h5>** กรุณาดูเวลาของเมลให้ตรงกับเวลาที่คุณส่งรหัสมา</h5>
+                <h5>** กรุณาดูเวลาของเมลให้ตรงกับเวลาที่ส่งรหัสมา</h5>
               </div>
               {emailArray?.map((item, index) => {
                 return (

@@ -65,7 +65,10 @@ const CardLink = ({
               // setVerifyPin(false);
             }}
           >
-            <ArrowLeftOutlined /> ย้อนกลับ
+          <div className="back-button">
+  <ArrowLeftOutlined />
+  <span>ย้อนกลับ</span>
+</div>
           </Typography.Paragraph>
 
           <div className="mail-content">
