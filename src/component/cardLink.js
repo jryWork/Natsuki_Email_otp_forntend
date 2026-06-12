@@ -18,12 +18,12 @@ const CardLink = ({
     {
       name: "NetFlix",
       appCode: "NF",
-      defaultImage: "wondernetflix.png",
+      defaultImage: "wondernetflix.webp",
     },
     {
       name: "DisneyPlus",
       appCode: "DN",
-      defaultImage: "wonderdisney.png",
+      defaultImage: "wonderdisney.webp",
     },
     {
       name: "TrueId",

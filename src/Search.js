@@ -201,8 +201,8 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                       style={{
                         backgroundImage: `url(${
                           appCode === "NF"
-                            ? "Netflix_icon.png"
-                            : "/Disney_plus_icon.jpg"
+                            ? "wondernetflix.webp"
+                            : "wonderdisney.webp"
                         })`,
                       }}
                     ></span>

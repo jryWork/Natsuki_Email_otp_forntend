@@ -52,14 +52,14 @@ function App() {
     {
       name: "NetFlix",
       appCode: "NF",
-      defaultImage: "wondernetflix.png",
+      defaultImage: "wondernetflix.webp",
       color: "#ffffff",
     },
     {
       name: "Disney Plus",
       appCode: "DN",
       color: "#ffffff",
-      defaultImage: "wonderdisney.png",
+      defaultImage: "wonderdisney.webp",
     },
   ];
 
