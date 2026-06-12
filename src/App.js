@@ -176,9 +176,9 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="App">
-              <header className="App-header">{renderContent()}</header>
-            </div>
+           <div className="App">
+            <div className="App-content">{renderContent()}</div>
+           </div>
           }
         />
 

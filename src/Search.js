@@ -188,7 +188,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
 
   return (
     <>
-      <div className="search-container" style={{ marginTop: "45px" }}>
+      <div className="search-container">
         {!selectCard && (
           <>
             <FadeIn>
@@ -307,7 +307,7 @@ const SearchPage = ({ setCurrentView, appCode }) => {
                     ตรวจพบข้อความ ใส่เลข 4 หลัก ของการสั่งซื้อเพื่อดูข้อความ
                   </Text>
                 </Col>
-                <Col span={24} style={{ marginBottom: "16px" }}>
+                <Col span={24} style={{ marginBottom: "10px" }}>
                   <Row justify="center">
                     <CustomOtpInput
                       length={4}
